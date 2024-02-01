@@ -2,7 +2,6 @@ package com.products.backend.persistence.entities;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.products.backend.domain.entities.Category;
 import com.products.backend.infra.util.json.GlobalJsonLocalDateTimeDeserializer;
 import com.products.backend.infra.util.json.GlobalJsonLocalDateTimeUsingTimeZoneSerializer;
 import lombok.Data;

@@ -86,7 +86,6 @@ public class SpringCoreConfig implements WebMvcConfigurer {
     @Bean
     @Primary
     public ObjectMapper serializingObjectMapper() {
-        System.out.println("Hello");
         return Util_Json.getObjectMapper();
     }
 
