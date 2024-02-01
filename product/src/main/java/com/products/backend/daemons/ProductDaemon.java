@@ -7,6 +7,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import javax.transaction.Transactional;
+import java.util.UUID;
 
 @Component
 @RequiredArgsConstructor
@@ -17,7 +18,7 @@ public class ProductDaemon {
 
     @Transactional
     @Scheduled(cron = "${cron-act-productos}", zone = TIME_ZONE)
-    public void productListDaemon(){
-
+    public void productListDaemon() throws Exception {
+        productService.getProductList(UUID.randomUUID().toString());
     }
 }

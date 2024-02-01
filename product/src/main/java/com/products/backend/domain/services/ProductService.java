@@ -36,18 +36,11 @@ public class ProductService {
             }
         });
         List<ProductJpa> productJpaList = productMapperJpa.toJpaModel(response);
+
         return response;
     }
 
     public void registrarProductos() {
 
-        ObjectMapper objectMapper = new ObjectMapper();
-        List<Product> response = httpClient.executeGet(UUID.randomUUID().toString(), "Get Product List", apiUrl , null, List.class, true);
-        response = objectMapper.convertValue(response, new TypeReference<List<Product>>() {
-            @Override
-            public Type getType() {
-                return super.getType();
-            }
-        });
     }
 }
