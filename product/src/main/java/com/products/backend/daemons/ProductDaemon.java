@@ -16,6 +16,10 @@ public class ProductDaemon {
     private static final String TIME_ZONE = "America/Havana";
     private final ProductService productService;
 
+    /* Proceso de Liquidación Automática
+    /* 0 15 10 ? * MON-FRI
+    /* seg min horas dias mes año
+    */
     @Transactional
     @Scheduled(cron = "${cron-act-productos}", zone = TIME_ZONE)
     public void productListDaemon() throws Exception {

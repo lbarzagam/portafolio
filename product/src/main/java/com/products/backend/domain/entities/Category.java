@@ -7,9 +7,11 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.Data;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Data
 public class Category {
+    private UUID unique_id;
     private Integer id;
     private String name;
     private String image;

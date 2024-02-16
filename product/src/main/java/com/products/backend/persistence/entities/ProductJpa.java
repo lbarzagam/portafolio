@@ -2,6 +2,7 @@ package com.products.backend.persistence.entities;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.products.backend.domain.entities.Category;
 import com.products.backend.infra.util.json.GlobalJsonLocalDateTimeDeserializer;
 import com.products.backend.infra.util.json.GlobalJsonLocalDateTimeUsingTimeZoneSerializer;
 import lombok.Data;
@@ -31,7 +32,7 @@ public class ProductJpa {
     private Double price;
     private String description;
     @ElementCollection
-    @CollectionTable(name = "images")
+    @Column(name = "images")
     private List<String> images;
     @ManyToOne
     @JoinColumn(name = "id_category")

@@ -1,9 +1,9 @@
-package com.products.backend.persistence.entities;
+package com.categories.backend.persistence.entities;
 
+import com.categories.backend.infra.util.json.GlobalJsonLocalDateTimeDeserializer;
+import com.categories.backend.infra.util.json.GlobalJsonLocalDateTimeUsingTimeZoneSerializer;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.products.backend.infra.util.json.GlobalJsonLocalDateTimeDeserializer;
-import com.products.backend.infra.util.json.GlobalJsonLocalDateTimeUsingTimeZoneSerializer;
 import lombok.Data;
 import org.hibernate.annotations.Type;
 
@@ -19,11 +19,10 @@ import java.util.UUID;
 @Entity
 public class CategoryJpa {
     @Id
-    @Column(name = "id")
-    private Integer id;
     @Type(type = "uuid-char")
     @Column(name = "unique_id")
     private UUID unique_id;
+    private Integer id;
     private String name;
     private String image;
     @JsonDeserialize(using = GlobalJsonLocalDateTimeDeserializer.class)
