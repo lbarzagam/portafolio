@@ -24,10 +24,19 @@ public class ProductRestContoller {
 
     @ApiOperation(value = "Servicio que consume una Api de productos")
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Liquidación recuperada satisfactoriamente"),
+            @ApiResponse(code = 200, message = "Api de Productos consumida satisfactoriamente"),
             @ApiResponse(code = 500, message = "Error interno")})
     @GetMapping("/list")
     public ResponseEntity<?> getProducts() throws Exception {
-        return new ResponseEntity<>(productService.getProductList(UUID.randomUUID().toString()), HttpStatus.OK);
+        return new ResponseEntity<>(productService.getProductToRegister(UUID.randomUUID().toString()), HttpStatus.OK);
+    }
+
+    @ApiOperation(value = "Servicio que devuelve el listado de productos registrados")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Productos obtenidos satisfactoriamente"),
+            @ApiResponse(code = 500, message = "Error interno")})
+    @GetMapping("/list")
+    public ResponseEntity<?> getProductsList() {
+        return new ResponseEntity<>(productService.getProductList(), HttpStatus.OK);
     }
 }

@@ -38,7 +38,7 @@ public class ProductService {
     @Value("${apiUrl}")
     private String apiUrl;
 
-    public  List<Product> getProductList(String ticket) throws Exception {
+    public  List<Product> getProductToRegister(String ticket) throws Exception {
         ObjectMapper objectMapper = new ObjectMapper();
         List<Product> response = httpClient.executeGet(ticket, "Get Product List", apiUrl , null, List.class, true);
         response = objectMapper.convertValue(response, new TypeReference<List<Product>>() {
@@ -99,6 +99,13 @@ public class ProductService {
         }
         productJpaRepository.saveAll(productMapperJpa.toJpaModel(productsToSave));
     }
+
+    public List<Product> getProductList(){
+        Specification spec = BaseSpecification.empty();
+
+        return productMapperJpa.toDomainModel(productJpaRepository.findAll(spec));
+    }
+
 
 
 }
