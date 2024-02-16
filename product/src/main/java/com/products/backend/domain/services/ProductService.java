@@ -98,8 +98,8 @@ public class ProductService {
             if(!existe.get()){
                 product.setUnique_id(UUID.randomUUID());
                 productsToSave.add(product);
-                existe.set(false);
             }
+            existe.set(false);
         }
         productJpaRepository.saveAll(productMapperJpa.toJpaModel(productsToSave));
     }
