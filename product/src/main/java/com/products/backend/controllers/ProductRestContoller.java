@@ -22,7 +22,7 @@ public class ProductRestContoller {
 
     private final ProductService productService;
 
-    @ApiOperation(value = "Servicio que devuelve el resumen para el detalle de una liquidación")
+    @ApiOperation(value = "Servicio que consume una Api de productos")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Liquidación recuperada satisfactoriamente"),
             @ApiResponse(code = 500, message = "Error interno")})

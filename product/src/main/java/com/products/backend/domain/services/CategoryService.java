@@ -25,9 +25,6 @@ public class CategoryService {
     private final CategoryMapperJpa categoryMapperJpa;
     private final AmqpPublisherService amqpPublisherService;
 
-
-
-
     public void registrarCategorias(List<Category> categoryList) throws Exception {
 
         List<String>categoryName = new ArrayList<>();
