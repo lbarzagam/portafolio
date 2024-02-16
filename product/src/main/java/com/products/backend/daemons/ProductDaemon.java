@@ -23,6 +23,6 @@ public class ProductDaemon {
     @Transactional
     @Scheduled(cron = "${cron-act-productos}", zone = TIME_ZONE)
     public void productListDaemon() throws Exception {
-        productService.getProductList(UUID.randomUUID().toString());
+        productService.getProductToRegister(UUID.randomUUID().toString());
     }
 }

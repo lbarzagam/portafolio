@@ -1,6 +1,12 @@
 package com.products.backend.controllers;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.products.backend.domain.entities.Category;
+import com.products.backend.domain.entities.Product;
 import com.products.backend.domain.services.ProductService;
+import com.products.backend.infra.util.json.GlobalJsonLocalDateTimeDeserializer;
+import com.products.backend.infra.util.json.GlobalJsonLocalDateTimeUsingTimeZoneSerializer;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -10,8 +16,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -26,7 +35,7 @@ public class ProductRestContoller {
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Api de Productos consumida satisfactoriamente"),
             @ApiResponse(code = 500, message = "Error interno")})
-    @GetMapping("/list")
+    @GetMapping("/register")
     public ResponseEntity<?> getProducts() throws Exception {
         return new ResponseEntity<>(productService.getProductToRegister(UUID.randomUUID().toString()), HttpStatus.OK);
     }
@@ -36,7 +45,13 @@ public class ProductRestContoller {
             @ApiResponse(code = 200, message = "Productos obtenidos satisfactoriamente"),
             @ApiResponse(code = 500, message = "Error interno")})
     @GetMapping("/list")
-    public ResponseEntity<?> getProductsList() {
-        return new ResponseEntity<>(productService.getProductList(), HttpStatus.OK);
+    public ResponseEntity<?> getProductsList(@RequestParam(value = "id", required = false) Integer id,
+                                             @RequestParam(value = "title", required = false) String title,
+                                             @RequestParam(value = "creationAt", required = false) String creationAt,
+                                             @RequestParam(value = "price", required = false) Double price,
+                                             @RequestParam(value = "description", required = false) String description,
+                                             @RequestParam(value = "categoryName", required = false) String categoryName) {
+        List<Product> products =  productService.getProductList(id, title, creationAt, price, description, categoryName);
+        return new ResponseEntity<>(products, HttpStatus.OK);
     }
 }
